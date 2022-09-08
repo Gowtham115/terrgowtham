@@ -1,7 +1,6 @@
 pipeline {
-    agent {
-        label 'ansibleslave'
-    }
+    agent any
+ tools { terraform 'terraform' }
     parameters {
         choice(name: 'action', choices: 'create\ndestroy', description: 'Create/update or destroy the apache-server')
         string(name: 'workspace', description: "Name of the workspace")
@@ -12,7 +11,7 @@ pipeline {
                 checkout([$class: 'GitSCM', 				
 				branches: [[name: "origin/master"]], 
 				userRemoteConfigs: [[
-                url: 'https://github.com/kaza514/terr.git']]])
+                url: 'https://github.com/Gowtham115/terrgowtham.git']]])
             }
         }
         stage('TF Plan') {
